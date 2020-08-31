@@ -36,8 +36,9 @@ class ProcessConsulting implements HookInterface {
             'connection' => $this->container->get('database'),
             'acl' => false
         ]);
-        $app = \Directus\create_app_with_project_name('/vagrant/directus', 'eplabor');
+        $app = \Directus\create_app_with_project_name($this->base_path, 'eplabor');
         $this->config = $app->getConfig();
+        $this->logger->debug($this->base_path);
 
         $this->handle($data);
     }
@@ -62,12 +63,12 @@ class ProcessConsulting implements HookInterface {
     private function create($data = null) {
         $markdown_string = $this->slack_payload['text'] = $this->buildMarkdown($data);
         // 디스크에 마크다운 파일로 저장
-        $result = file_put_contents('/vagrant/homepage/content/consulting/online/' . $data['id'] . '.md', $markdown_string);
+        $result = file_put_contents($this->base_path . '/../homepage/content/consulting/online/' . $data['id'] . '.md', $markdown_string);
         if($result === FALSE) {
             $error = error_get_last();
             $this->logger->error(print_r($error, true)); 
         } elseif(is_int($result) && $result > 0) {
-            $this->logger->debug('[HOOK] Written to /vagrant/homepage/content/consulting/online/' . $data['id'] . '.md');
+            $this->logger->debug('[HOOK] Written to homepage/content/consulting/online/' . $data['id'] . '.md');
         }
         // $this->logger->debug('/vagrant/homepage/content/consulting/online/' . $data['id'] . '.md');
     }
@@ -77,7 +78,7 @@ class ProcessConsulting implements HookInterface {
         // $this->logger->debug(print_r($data, true));
         // 삭제
         if(!empty($data['status']) && $data['status'] == 'deleted') {
-            $output = shell_exec('rm -f /vagrant/homepage/content/consulting/online/' . $data['id'] . '.md');
+            $output = shell_exec('rm -f ' . $this->base_path  . '/homepage/content/consulting/online/' . $data['id'] . '.md');
             $this->logger->debug($output . ' deleted');
         } else {
             $item = $this->tableGateway->getOneData($data['id']);
