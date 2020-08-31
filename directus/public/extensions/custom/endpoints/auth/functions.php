@@ -63,11 +63,10 @@ if (!function_exists('eplaborProcessItem')) {
         $targets = ['collection', 'action_type', 'item_id'];
         foreach ($targets as $key) {
             // $logger->debug($key . '--' . $params[$key]);
-            if (!empty($params[$key])) {
-                $payloads[$key] = $params[$key]; unset($params[$key]);
-            }
+            $payloads[$key] = $params[$key];
+            unset($params[$key]);
         }
-
+        $logger->debug($payloads['action_type']);
         switch ($payloads['action_type']) {
             case 'create': 
                 return  $bot->create($payloads['collection'], $params);
@@ -75,6 +74,7 @@ if (!function_exists('eplaborProcessItem')) {
             case 'update':
                 $res = $bot->update($payloads['collection'], $params['id'], $params);
                 $item = json_decode($res->getBody()->getContents(), true);
+                $logger->debug(print_r($item, true));
                 return $item['data'];
                 break;
             case 'delete':
