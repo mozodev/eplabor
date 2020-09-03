@@ -50,7 +50,7 @@ class ProcessConsulting implements HookInterface {
      */
     public function handle($data = null) {
         // 요청 형식에 따라 실행
-        // $this->logger->debug('[HOOK] --- handle! --- ' . $this->type);
+        $this->logger->debug('[HOOK] --- handle! --- ' . $this->type);
         if(!empty($this->type) && in_array($this->type, ['create', 'update'])) {
             $this->{$this->type}($data);
         }
@@ -119,11 +119,7 @@ class ProcessConsulting implements HookInterface {
         // $output = shell_exec('cd ' . $this->base_path . '../homepage/ && git add . && git commit -m "무료 상담 변경 사항을 동기화합니다." && git push');
         $line = system('cd /home/ubuntu/eplabor/ && git add -A 2>&1', $retval);
         $commit = system('git commit -m "test" 2>&1', $retval);
-	$push = system('git push 2>&1', $retval);
-
-        // $last_line = shell_exec("sudo -u ubuntu /home/ubuntu/eplabor/provision/git-sync.sh 2>&1 && sudo chmod -R 777 /home/ubuntu/eplabor/content/consulting/online/");
-        // $last_line = shell_exec("sudo -n /home/ubuntu/eplabor/provision/git-sync.sh 2>&1");
-        // $this->logger->debug($last_line);
+        $push = system('git push 2>&1', $retval);
     }
 
 }
