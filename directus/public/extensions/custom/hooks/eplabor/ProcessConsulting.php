@@ -77,7 +77,7 @@ class ProcessConsulting implements HookInterface {
         $this->logger->debug(print_r($data, true));
         // 삭제
         if(!empty($data['status']) && $data['status'] == 'deleted') {
-            $output = shell_exec('rm -f ' . $this->base_path  . '/homepage/content/consulting/online/' . $data['id'] . '.md');
+            $output = shell_exec('rm -f ' . $this->base_path  . '../homepage/content/consulting/online/' . $data['id'] . '.md');
             $this->logger->debug($data['id'] . ' deleted');
         } else {
             $item = $this->tableGateway->getOneData($data['id']);
