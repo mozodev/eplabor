@@ -4,6 +4,9 @@ use Directus\Application\Http\Request;
 
 require_once __DIR__ . '../../../EplaborBot.php';
 
+$file = str_replace('/home/ubuntu/eplabor/directus/public/extensions', '', __FILE__);
+$line = __LINE__;
+
 if (!function_exists('eplaborHandleAuth')) {
     // 인증 요청 처리
     function eplaborHandleAuth(Request $request)
@@ -12,14 +15,13 @@ if (!function_exists('eplaborHandleAuth')) {
         $logger = $container->get('logger');
         $bot = new EplaborBot();
         $params = $request->getParsedBody();
-        $logger->debug('[/custom/auth] eplaborHandleAuth -- params');
-        $logger->debug(print_r($params, true));
+        $logger->debug('eplaborHandleAuth -- params', $params);
 
         $item = [];
 
         // auth
         $auth = $bot->check($params);
-        $logger->debug('[/custom/auth] -- $bot->check($param) : ' . print_r($auth, true));
+        $logger->debug('$bot->check($param) : ' . print_r($auth, true));
         // 비밀번호 불일치
         if(!isset($auth['data']) || !$auth['data']['valid']) {
             return ['valid' => false];
@@ -63,10 +65,12 @@ if (!function_exists('eplaborProcessItem')) {
         $targets = ['collection', 'action_type', 'item_id'];
         foreach ($targets as $key) {
             // $logger->debug($key . '--' . $params[$key]);
-            $payloads[$key] = $params[$key];
-            unset($params[$key]);
+            if(!empty($params[$key])) {
+                $payloads[$key] = $params[$key];
+                unset($params[$key]);
+            }
         }
-        $logger->debug($payloads['action_type']);
+        $logger->debug($payloads['action_type'], $params);
         switch ($payloads['action_type']) {
             case 'create': 
                 return  $bot->create($payloads['collection'], $params);
