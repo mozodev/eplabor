@@ -73,7 +73,9 @@ if (!function_exists('eplaborProcessItem')) {
         $logger->debug($payloads['action_type'], $params);
         switch ($payloads['action_type']) {
             case 'create': 
-                return  $bot->create($payloads['collection'], $params);
+                $res = $bot->create($payloads['collection'], $params);
+                $logger->debug('create', $res);
+                return $res;
                 break;
             case 'update':
                 $res = $bot->update($payloads['collection'], $params['id'], $params);
