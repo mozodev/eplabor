@@ -91,8 +91,8 @@ class EplaborBot
         try {
             $res = $this->client->post('/eplabor/items/' . $collection, ['form_params' => $params]);
             $item = json_decode($res->getBody()->getContents(), true);
-            $this->logger->debug('bot::create -- $res', $res);
-            $this->logger->debug('bot::create -- $item', $item);
+            $this->logger->debug('bot::create');
+            $this->logger->debug(print_r($res, true));
             return $item['data'];
         } catch (Exception $e) {
             $this->logger->debug($e->getMessage());
