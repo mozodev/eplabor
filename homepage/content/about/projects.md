@@ -1,14 +1,13 @@
 ---
-title: "주요사업"
-date: 2020-05-13T16:22:02+09:00
-draft: true
+title: 주요사업
+date: 2020-05-13T16:22:02.000+09:00
 layout: section_single
 menu:
   main:
     parent: about
     weight: 3
----
 
+---
 ### 주요 추진사업
 
 - 취약계층 노동자 노동법률 지원 및 노사관계 컨설팅
