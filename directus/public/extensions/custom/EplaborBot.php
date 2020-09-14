@@ -11,7 +11,7 @@ class EplaborBot
     {
         $http_params = [
             'base_uri' => 'http://localhost/',
-            // 'debug' => true
+            'debug' => true,
             'headers' => [
                 'Authorization' => 'Bearer ' . getenv('BOT_TOKEN'),
                 'Content-Type' => 'application/json',
