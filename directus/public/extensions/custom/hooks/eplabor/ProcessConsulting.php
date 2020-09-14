@@ -73,7 +73,7 @@ class ProcessConsulting implements HookInterface {
     }
 
     private function update($data = null) {
-        $this->logger->debug('[HOOK] --- update() --- ' . $data['id'] . ' -- ' . $data['status']);
+        // $this->logger->debug('[HOOK] --- update() --- ' . $data['id'] . ' -- ' . $data['status']);
         $this->logger->debug(print_r($data, true));
         // 삭제
         if(!empty($data['status']) && $data['status'] == 'deleted') {
