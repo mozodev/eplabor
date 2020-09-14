@@ -117,9 +117,9 @@ class ProcessConsulting implements HookInterface {
         $this->logger->debug('gitPush');
         // https://github.com/simonthum/git-sync
         // $output = shell_exec('cd ' . $this->base_path . '../homepage/ && git add . && git commit -m "무료 상담 변경 사항을 동기화합니다." && git push');
-        $line = system('cd /home/ubuntu/eplabor/ && git add -A 2>&1', $retval);
-        $commit = system('git commit -m "test" 2>&1', $retval);
-        $push = system('git push 2>&1', $retval);
+        $line = system('cd /home/ubuntu/eplabor/ && git add -A');
+        $commit = system('git commit -m "test"');
+        $push = system('git push');
     }
 
 }
