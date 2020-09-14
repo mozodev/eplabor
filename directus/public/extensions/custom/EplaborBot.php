@@ -93,6 +93,7 @@ class EplaborBot
             $item = json_decode($res->getBody()->getContents(), true);
             $this->logger->debug('bot::create');
             $this->logger->debug(print_r($res->getBody(), true));
+            $this->logger->debug(print_r($res->getStatusCode(), true));
             return $item['data'];
         } catch (Exception $e) {
             $this->logger->debug($e->getMessage());
