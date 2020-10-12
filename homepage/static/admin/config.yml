@@ -105,7 +105,7 @@ collections:
     folder: "homepage/content/allim/downloads"
     create: true
     slug: "{{slug}}"
-    extension: "md"
+    extension: "html"
     fields:
       - {label: "제목", name: "title", widget: "string"}
       - {label: "작성일", name: "date", widget: "datetime"}
