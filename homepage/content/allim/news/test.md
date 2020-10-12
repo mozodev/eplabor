@@ -1,5 +1,5 @@
 ---
-title: test 2
+title: test
 date: 2020-10-12T02:44:28.612Z
 type: news
 layout: section_single
