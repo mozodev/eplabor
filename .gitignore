@@ -25,7 +25,15 @@ directus/config/*
 directus/migrations
 directus/public/admin
 directus/public/extensions/core
+<<<<<<< HEAD
+=======
+!directus/public/extensions/custom/hooks
+>>>>>>> test
 directus/src
 directus/vendor
 directus/*.md
 directus/composer.json
+<<<<<<< HEAD
+=======
+.env
+>>>>>>> test

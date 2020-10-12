@@ -110,4 +110,18 @@ PHP 7.2.24-0ubuntu0.18.04.6 (cli) (built: May 26 2020 13:09:11) ( NTS )
 mysql  Ver 15.1 Distrib 10.2.32-MariaDB
 
 /dev/xvdb        22G   45M   21G   1% /data
+<<<<<<< HEAD
 ```
+=======
+```
+
+## rclone
+
+```
+mkdir -p /vagrant/data
+rclone config
+rclone mount --daemon team-durumi-drive:/eplabor /vagrant/data
+# 언마운트 에러 시 아래
+sudo umount -l /vagrant/data
+```
+>>>>>>> test
