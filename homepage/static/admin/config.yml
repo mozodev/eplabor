@@ -109,7 +109,7 @@ collections:
     fields:
       - {label: "제목", name: "title", widget: "string"}
       - {label: "작성일", name: "date", widget: "datetime"}
-      - {label: "본문", name: "body", widget: "markdown"}
+      - {label: "본문", name: "body", widget: "ncw-tiny-mce" }
       - {label: "유형", name: "type", widget: "string", default: "download"}
       - {label: "레이아웃", name: "layout", widget: "string", default: "section_single"}
   - label: "발간자료"
